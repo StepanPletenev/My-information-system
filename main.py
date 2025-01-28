@@ -18,3 +18,16 @@ class Order:
 
     def __str__(self):
         return f"Заказ #{self.order_id} ({self.status})\nОписание: {self.description}\nКлиент: {self.client.name}"
+
+class Courier:
+    def __init__(self,name,phone):
+        self.courier_id = str(uuid.uuid4())[:8]
+        self.name = name
+        self.phone = phone
+        self.available = True
+        self.current_order = None
+
+    def set_available(self, status):
+        self.available = status
+        if not status:
+            self.current_order = None
