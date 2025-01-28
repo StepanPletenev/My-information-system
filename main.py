@@ -50,6 +50,31 @@ class Client:
 
     def add_order(self, order):
         self.order_history.append(order)
-    
+
     def __str__(self):
         return f"Клииент #{self.client_id} - {self.name}\nАдрес: {self.address}"
+
+
+class DeliverySystem:
+    def __init__(self):
+        self.orders = []
+        self.couriers = []
+        self.clients = []
+
+    def create_order(self, description, client):
+        order = Order(description, client)
+        self.orders.append(order)
+        client.add_order(order)
+        return order
+
+    def add_courier(self, name, phone):
+        courier = Courier(name, phone)
+        self.couriers.append(courier)
+        return courier
+
+    def add_client(self, name, address, phone):
+        client = Client(name, address, phone)
+        self.clients.append(client)
+        return client
+
+    
